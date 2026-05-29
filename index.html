@@ -168,7 +168,17 @@
 
 <nav>
   <ul class="nav-links">
-    <li><a href="#">Shop</a></li>
+    <li class="nav-dropdown" id="shop-dropdown">
+      <a href="#" onclick="toggleShopDropdown(event)">
+        Shop
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="merch.html"><span>👕</span> Merch</a>
+        <hr/>
+        <a href="find-us.html"><span>📍</span> Where to Find Us</a>
+      </div>
+    </li>
 
     <li class="nav-dropdown" id="story-dropdown">
       <a href="#" onclick="toggleNavDropdown(event)">
@@ -230,11 +240,9 @@
   <h2>What makes Da Tomato Guy special?</h2>
   <p>Grown and made right here in Hawaiʻi, Da Tomato Guy is all about fresh ingredients, big flavor, and a whole lot of aloha. Every jar is small-batch and handcrafted — because good salsa takes time and heart.</p>
   <div class="about-icons">
-    <div class="about-icon-item"><span class="icon">🌱</span><span>Homegrown<br>ingredients</span></div>
-    <div class="about-icon-item"><span class="icon">🏝️</span><span>Made in<br>Hawaiʻi</span></div>
-    <div class="about-icon-item"><span class="icon">🫙</span><span>Small batch<br>every time</span></div>
-    <div class="about-icon-item"><span class="icon">🚫</span><span>No artificial<br>preservatives</span></div>
-    <div class="about-icon-item"><span class="icon">🍅</span><span>Fresh tomatoes<br>always</span></div>
+    <div class="about-icon-item"><span class="icon">🍅</span><span>100% Fresh<br>Tomatoes</span></div>
+    <div class="about-icon-item"><span class="icon">🌿</span><span>Naturally<br>Sweet</span></div>
+    <div class="about-icon-item"><span class="icon">🏝️</span><span>Local<br>Ingredients</span></div>
   </div>
 </section>
 
@@ -358,6 +366,12 @@
 
 <script>
   // Nav dropdown
+  function toggleShopDropdown(e) {
+    e.preventDefault();
+    const dd = document.getElementById('shop-dropdown');
+    document.getElementById('story-dropdown').classList.remove('open');
+    dd.classList.toggle('open');
+  }
   function toggleNavDropdown(e) {
     e.preventDefault();
     const dd = document.getElementById('story-dropdown');
