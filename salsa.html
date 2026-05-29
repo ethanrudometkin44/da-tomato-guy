@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salsa — Da Tomato Guy</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #fdf5f2; }
+  .announcement { background: #fdf5f2; text-align: center; padding: 10px 20px; font-size: 13px; color: #333; }
+  nav { background: #d63c2a; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 80px; position: relative; z-index: 1000; }
+  .nav-links { display: flex; gap: 32px; list-style: none; position: relative; }
+  .nav-links a { color: #fff; text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a:hover { opacity: 0.82; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+  .nav-dropdown > a svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.25s ease; }
+  .nav-dropdown.open > a svg { transform: rotate(180deg); }
+  .nav-dropdown-menu { position: absolute; top: calc(100% + 16px); left: 50%; background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.14); padding: 8px; min-width: 190px; opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-6px); transition: opacity 0.22s ease, transform 0.22s ease; z-index: 999; }
+  .nav-dropdown.open .nav-dropdown-menu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+  .nav-dropdown-menu::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid #fff; }
+  .nav-dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 9px; color: #2e1206; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; text-transform: none; text-decoration: none; transition: background 0.15s; opacity: 1; }
+  .nav-dropdown-menu a:hover { background: #fdf5f2; color: #d63c2a; }
+  .nav-dropdown-menu a span { font-size: 16px; }
+  .nav-dropdown-menu hr { border: none; border-top: 1px solid #f0e4dc; margin: 4px 0; }
+  .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); font-family: 'Fredoka One', cursive; font-size: 24px; color: #fff; text-transform: uppercase; letter-spacing: 0.02em; pointer-events: none; white-space: nowrap; text-decoration: none; }
+  .nav-icons { display: flex; align-items: center; gap: 20px; }
+  .nav-icons svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; opacity: 0.92; }
+  .nav-icons svg:hover { opacity: 1; }
+
+  .page-hero {
+    background: #d63c2a;
+    padding: 72px 60px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 60px;
+    background: #fdf5f2;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .page-hero h1 { font-family: 'Fredoka One', cursive; font-size: 48px; color: #fff; text-transform: uppercase; margin-bottom: 12px; }
+  .page-hero p { font-size: 16px; color: rgba(255,255,255,0.85); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+  .page-content { max-width: 1000px; margin: 0 auto; padding: 80px 40px 120px; }
+  .salsa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .placeholder-block {
+    background: #fff;
+    border: 2px dashed #e8d8d0;
+    border-radius: 16px;
+    padding: 60px 40px;
+    text-align: center;
+    color: #bbb;
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .placeholder-block span { font-size: 40px; display: block; margin-bottom: 16px; }
+  .placeholder-block h3 { font-size: 18px; font-weight: 600; color: #d63c2a; margin-bottom: 10px; font-style: normal; }
+</style>
+</head>
+<body>
+
+<div class="announcement">Da Tomato Guy ships locally! Follow us on Instagram @da_tomatoguy for updates.</div>
+<nav>
+  <ul class="nav-links">
+    <li><a href="index.html">Shop</a></li>
+    <li class="nav-dropdown" id="story-dropdown">
+      <a href="#" onclick="toggleNavDropdown(event)">
+        Our Story
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="about.html"><span>🍅</span> About Us</a>
+        <hr/>
+        <a href="salsa.html"><span>🫙</span> Salsa</a>
+        <hr/>
+        <a href="chips.html"><span>🌮</span> Chips</a>
+      </div>
+    </li>
+    <li><a href="#">Connect</a></li>
+  </ul>
+  <a class="nav-logo" href="index.html">Da Tomato Guy</a>
+  <div class="nav-icons">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>🫙 Salsa</h1>
+  <p>Small-batch, homegrown, and made fresh. Two salsas — one for everyone, one for the brave.</p>
+</div>
+<div class="page-content">
+  <div class="salsa-grid">
+    <div class="placeholder-block">
+      <span>🍅</span>
+      <h3>Mild Salsa</h3>
+      Content coming soon — ingredients, story, how it's made.
+    </div>
+    <div class="placeholder-block">
+      <span>🌶️</span>
+      <h3>Spicy Salsa</h3>
+      Content coming soon — ingredients, story, heat level.
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleNavDropdown(e) {
+    e.preventDefault();
+    const dd = document.getElementById('story-dropdown');
+    dd.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const dd = document.getElementById('story-dropdown');
+    if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
